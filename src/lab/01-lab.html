@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>js lab</title>
+  <style type="text/less">
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      padding-top:100px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+  </div>
+  <script src="http://localhost:30304/less/dist/less.js"></script>
+  <script src="http://localhost:30304/lodash.js"></script>
+  <script src="http://localhost:30304/tools.js"></script>
+  <script>
+    l( `
+      _: version ${_.VERSION}
+      less: version ${less.version}
+    `);
+  </script>
+</body>
+
+</html>
