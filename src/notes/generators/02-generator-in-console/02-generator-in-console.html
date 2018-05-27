@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>js lab</title>
+  <style type="text/less">
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      padding-top:100px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+  </div>
+  <script src="http://localhost:30304/less/dist/less.js"></script>
+  <script src="http://localhost:30304/lodash.js"></script>
+  <script src="http://localhost:30304/tools.js"></script>
+  <script>
+    l( `
+      _: version ${_.VERSION}
+      less: version ${less.version}
+    `);
+
+    function *foo(w) {
+
+        l('b4 yeild', w)
+
+      console.log(1,  yield '1st yield');
+
+        l('btw 1st and 2nd')
+
+      console.log(2,  yield '2nd yield')
+
+        l('btw 2st and 3rd')
+
+      console.log(3,  yield '3rd yield (last)')
+
+        l('after last')
+
+    }
+
+    const x = foo('w')
+
+    l('--------------'); debugger;
+
+    l(`x.next('x')`, x.next('x'))
+
+    l('--------------'); debugger;
+
+    l(`x.next('y')`, x.next('y'))
+
+    l('--------------'); debugger;
+
+    l(`x.next('z')`, x.next('z'))
+
+    l('--------------'); debugger;
+
+    l(`x.next('?')`, x.next('?'))
+
+  </script>
+</body>
+
+</html>

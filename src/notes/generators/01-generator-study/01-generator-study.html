@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>js lab</title>
+  <style type="text/less">
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      padding-top:100px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+  </div>
+  <script src="http://localhost:30304/less/dist/less.js"></script>
+  <script src="http://localhost:30304/lodash.js"></script>
+  <script src="http://localhost:30304/tools.js"></script>
+  <script>
+    l( `
+      _: version ${_.VERSION}
+      less: version ${less.version}
+    `);
+
+    function *foo(arg) {
+        // pause until the first next() is called
+
+        l('b4 yeild, arg:', arg)
+
+        // "Yield and wait for next to be called"
+        const valueFrom2ndNext = yield '1st yield';
+        // the 1st next() send the value '1st yield' out; pause
+        // and wait for 2nd next() to send value in.
+
+        l('btw 1st and 2nd yeild: valueFrom2ndNext: ', valueFrom2ndNext)
+
+        const valueFrom3rdNext = yield '2nd yield';
+        // the 2nd next() send the value '2nd yield' out; pause
+        // and wait for 3rd next() to send value in.
+
+        l('btw 2st and 3rd yeild: valueFrom3rdNext: ', valueFrom3rdNext)
+
+        const valueFrom4thNext = yield '3rd yield';
+        // the 3rd next() send the value '3rd yield' out; pause
+        // and wait for 4th (last) next() to send value in.
+
+        l('after 3rd yield (last), valueFrom4thNext: ', valueFrom4thNext)
+
+        return `i am value recieved by last next() call`;
+    }
+
+    const x = foo('w')
+
+    l('--------------');
+    // debugger;
+
+    const returnOf1stNext = x.next('value of 1st next called')
+    l(`1st next called, returnOf1stNext: `, returnOf1stNext)
+
+    l('--------------');
+
+    const returnOf2ndNext = x.next('value of 2nd next called')
+    l(`2nd next called, returnOf2ndNext: `, returnOf2ndNext)
+
+    l('--------------');
+
+    const returnOf3rdNext = x.next('value of 3rd next called')
+    l(`3nd next called, returnOf3rdNext: `, returnOf3rdNext)
+
+    l('--------------');
+
+    const returnOf4thNext = x.next('value of 4th next called')
+    l(`4th next called, returnOf4thNext: `, returnOf4thNext)
+
+  </script>
+</body>
+
+</html>
